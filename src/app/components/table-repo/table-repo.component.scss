@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+}
+
+.fav {
+  display: inline-block;
+
+
+  &:after {
+    color: gray;
+    content: '☆';
+  }
+
+  &--selected {
+    &:after {
+      color: yellow;
+      content: '★';
+    }
+  }
+}
