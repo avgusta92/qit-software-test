@@ -17,12 +17,17 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RepoCardComponent } from './components/repo-card/repo-card.component';
+import {MatCardModule} from "@angular/material/card";
+
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TopRepoComponent,
-    TableRepoComponent
+    TableRepoComponent,
+    RepoCardComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +40,9 @@ import {MatIconModule} from "@angular/material/icon";
     MatTabsModule,
     HttpClientModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    FontAwesomeModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

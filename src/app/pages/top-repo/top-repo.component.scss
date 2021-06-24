@@ -1,0 +1,11 @@
+.top-repo {
+  width: 96%;
+  margin: 0 auto;
+
+  &__content-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+

@@ -1,7 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {RepoService} from '../../services/repo.service'
 
-export interface PeriodicElement {
+export interface RepoTableItem {
+  id: number;
   position: number;
   name: string;
   stars: number;
@@ -18,9 +19,11 @@ export interface PeriodicElement {
   styleUrls: ['./table-repo.component.scss']
 })
 
-export class TableRepoComponent {
+export class TableRepoComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'stars', 'fav'];
-  reposValue: PeriodicElement[] = [];
+  repoTableItems: RepoTableItem[] = [];
+
+  @Output() onSelectRepo = new EventEmitter<number>();
 
   constructor(
     private repoService: RepoService,
@@ -28,13 +31,14 @@ export class TableRepoComponent {
   }
 
   ngOnInit() {
-    this.repoService.addTopRepo()
+    this.repoService.getTopRepo()
       .subscribe((repos) => {
         console.log('repos', repos);
 
-        this.reposValue = repos.map((repo, index) => {
+        this.repoTableItems = repos.map((repo, index) => {
           return {
-            position: index,
+            id: repo.id,
+            position: index + 1,
             name: repo.name,
             stars: repo.stargazers_count,
             fav: false

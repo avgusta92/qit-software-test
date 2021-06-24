@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="reposValue" class="mat-elevation-z8">
+<table mat-table [dataSource]="repoTableItems" class="mat-elevation-z8 table-repo">
   <!-- Position Column -->
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -29,5 +29,9 @@
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns;"
+    (click)="onSelectRepo.emit(row.id)"
+  ></tr>
 </table>

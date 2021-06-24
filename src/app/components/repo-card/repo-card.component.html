@@ -1,0 +1,26 @@
+<mat-card class="repo-card">
+  <mat-card-header>
+    <mat-card-title>{{repo?.name}}</mat-card-title>
+
+<!--    <span [ngClass]="{-->
+<!--        'fav': true,-->
+<!--        'fav&#45;&#45;selected': element.fav-->
+<!--    }"></span>-->
+
+  </mat-card-header>
+
+  <div class="repo-card__content content">
+    <img
+      class="content__img"
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+    >
+    <div class="content__text-wrap">
+      <p>{{repo?.owner!.login}}</p>
+      <p>{{repo?.description ? repo?.description : 'No description'}}</p>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary">Add to favorites</button>
+
+</mat-card>
