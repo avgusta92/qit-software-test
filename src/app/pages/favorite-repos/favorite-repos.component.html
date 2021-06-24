@@ -1,0 +1,12 @@
+<div class="fav-repos-wrap">
+  <span *ngIf="favRepos.length === 0">You don't have favorite repo</span>
+
+  <div *ngIf="favRepos.length > 0">
+    <app-repo-card
+      class="fav-repos"
+      *ngFor="let favRepo of favRepos"
+      [repo]="favRepo"
+      [buttonCard]="'delete'"
+    ></app-repo-card>
+  </div>
+</div>'
