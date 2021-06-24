@@ -1,6 +1,6 @@
-//.repo-card {
-//  width: 100%;
-//}
+.repo-card {
+  margin-bottom: 20px;
+}
 
 .content {
   display: flex;
@@ -12,8 +12,22 @@
     width: 80px;
     border-radius: 80px;
   }
+}
 
-  &__text-wrap {
+.header {
+  &__fav {
+    display: inline-block;
 
+    &:after {
+      color: gray;
+      content: '☆';
+    }
+
+    &--selected {
+      &:after {
+        color: orange;
+        content: '★';
+      }
+    }
   }
 }

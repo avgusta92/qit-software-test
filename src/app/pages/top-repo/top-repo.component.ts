@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import {RepoService} from "../../services/repo.service";
 import {RepositoryModel} from "../../models/repository.model";
+import {RepoItem} from "../../models/repo-item.model";
 
 @Component({
   selector: 'app-top-repo',
@@ -10,8 +10,7 @@ import {RepositoryModel} from "../../models/repository.model";
 })
 
 export class TopRepoComponent implements OnInit {
-  searchIcon = faSearch;
-  activeRepo?: RepositoryModel;
+  activeRepo?: RepoItem;
 
   constructor(private repoService: RepoService) { }
 
@@ -19,9 +18,8 @@ export class TopRepoComponent implements OnInit {
   }
 
   onSelectRepo(activeRepoId: number) {
-    this.activeRepo = this.repoService.repos$.getValue()?.find((item) => item.id === activeRepoId);
-    console.log('activeRepoId', activeRepoId, this.activeRepo);
+    this.activeRepo = this.repoService
+      .getTopRepo()?.find((item) => item.id === activeRepoId);
   }
-
 
 }

@@ -5,5 +5,6 @@ export interface RepositoryModel {
   description: string;
   owner: {
     login: string;
+    avatar_url: string;
   }
 }

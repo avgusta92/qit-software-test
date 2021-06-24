@@ -1,17 +1,8 @@
 import {Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {RepoService} from '../../services/repo.service'
 
-export interface RepoTableItem {
-  id: number;
-  position: number;
-  name: string;
-  stars: number;
-  fav: boolean;
-}
-
-/**
- * @title Basic use of `<table mat-table>`
- */
+import {RepoService} from '../../services/repo.service';
+import {RepoTableItem} from '../../models/repo-table-item.model';
+import {RepoItem} from "../../models/repo-item.model";
 
 @Component({
   selector: 'app-table-repo',
@@ -23,28 +14,37 @@ export class TableRepoComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'stars', 'fav'];
   repoTableItems: RepoTableItem[] = [];
 
+  private page: number = 0;
+
   @Output() onSelectRepo = new EventEmitter<number>();
 
   constructor(
-    private repoService: RepoService,
+    private repoService: RepoService
   ) {
   }
 
   ngOnInit() {
-    this.repoService.getTopRepo()
-      .subscribe((repos) => {
-        console.log('repos', repos);
+    if (!this.repoService.getTopRepo() || this.repoService.getTopRepo().length === 0) {
+      this.repoService.fetchTopRepo(this.page);
+    }
 
-        this.repoTableItems = repos.map((repo, index) => {
-          return {
-            id: repo.id,
-            position: index + 1,
-            name: repo.name,
-            stars: repo.stargazers_count,
-            fav: false
-          };
-        });
-      })
+    this.repoService.getTopRepo$()
+      .subscribe((repos: RepoItem[]) => {
+        this.repoTableItems = repos;
+      });
+  }
+
+  onTableScroll(event: any) {
+    const tableViewHeight = event.target.offsetHeight;
+    const tableScrollHeight = event.target.scrollHeight;
+    const scrollLocation = event.target.scrollTop;
+
+    const buffer = 200;
+    const limit = tableScrollHeight - tableViewHeight - buffer;
+    if (scrollLocation > limit) {
+      this.page++;
+      this.repoService.fetchTopRepo(this.page);
+    }
   }
 }
 

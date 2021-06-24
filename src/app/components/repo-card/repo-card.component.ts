@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RepositoryModel} from "../../models/repository.model";
+import {RepoService} from "../../services/repo.service";
+import {RepoItem} from "../../models/repo-item.model";
 
 @Component({
   selector: 'app-repo-card',
@@ -8,11 +9,20 @@ import {RepositoryModel} from "../../models/repository.model";
 })
 export class RepoCardComponent implements OnInit {
 
-  @Input() repo?: RepositoryModel;
+  @Input() repo?: RepoItem;
+  @Input() buttonCard!: string;
 
-  constructor() { }
+  constructor(private repoService: RepoService) { }
 
   ngOnInit(): void {
+  }
+
+  onAddFavoriteRepo() {
+    this.repoService.addFavoriteRepo(this.repo!.id);
+  }
+
+  onDeleteFavoriteRepo() {
+    this.repoService.deleteFavoriteRepo(this.repo!.id);
   }
 
 }

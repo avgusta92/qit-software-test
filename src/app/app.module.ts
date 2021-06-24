@@ -20,6 +20,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RepoCardComponent } from './components/repo-card/repo-card.component';
 import {MatCardModule} from "@angular/material/card";
+import { FavoriteReposComponent } from './pages/favorite-repos/favorite-repos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {MatCardModule} from "@angular/material/card";
     HeaderComponent,
     TopRepoComponent,
     TableRepoComponent,
-    RepoCardComponent
+    RepoCardComponent,
+    FavoriteReposComponent
   ],
   imports: [
     CommonModule,

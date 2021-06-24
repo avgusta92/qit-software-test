@@ -1,18 +1,18 @@
 <mat-card class="repo-card">
-  <mat-card-header>
+  <mat-card-header class="repo-card__header header">
     <mat-card-title>{{repo?.name}}</mat-card-title>
 
-<!--    <span [ngClass]="{-->
-<!--        'fav': true,-->
-<!--        'fav&#45;&#45;selected': element.fav-->
-<!--    }"></span>-->
+    <span [ngClass]="{
+        'header__fav': true,
+        'header__fav--selected': repo?.fav
+    }"></span>
 
   </mat-card-header>
 
   <div class="repo-card__content content">
     <img
       class="content__img"
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      [src]="repo?.owner!.avatar_url"
       alt="Photo of a Shiba Inu"
     >
     <div class="content__text-wrap">
@@ -21,6 +21,23 @@
     </div>
   </div>
 
-  <button mat-raised-button color="primary">Add to favorites</button>
+
+  <button
+    *ngIf="buttonCard === 'add'"
+    mat-raised-button
+    color="primary"
+    (click)="onAddFavoriteRepo()"
+  >
+    Add to favorites
+  </button>
+
+  <button
+    *ngIf="buttonCard === 'delete'"
+    mat-raised-button
+    color="primary"
+    (click)="onDeleteFavoriteRepo()"
+  >
+    Delete from favorites
+  </button>
 
 </mat-card>

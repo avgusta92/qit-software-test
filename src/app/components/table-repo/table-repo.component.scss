@@ -1,10 +1,10 @@
-.table-repo {
-  width: 100%;
+.table-repo-container {
+  overflow: auto;
+  max-height: calc(100vh - 150px);
 }
 
 .fav {
   display: inline-block;
-
 
   &:after {
     color: gray;
@@ -13,7 +13,7 @@
 
   &--selected {
     &:after {
-      color: yellow;
+      color: orange;
       content: '★';
     }
   }

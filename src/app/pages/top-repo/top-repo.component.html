@@ -1,12 +1,8 @@
 <div class="top-repo">
-  <mat-form-field appearance="outline">
-    <input type="search" matInput placeholder="Search repo">
-    <fa-icon matSuffix [icon]="searchIcon"></fa-icon>
-  </mat-form-field>
 
   <div class="top-repo__content-wrap">
     <app-table-repo (onSelectRepo)="onSelectRepo($event)"></app-table-repo>
-    <app-repo-card *ngIf="activeRepo" [repo]="activeRepo"></app-repo-card>
+    <app-repo-card *ngIf="activeRepo" [repo]="activeRepo" [buttonCard]="'add'"></app-repo-card>
   </div>
 
 </div>
